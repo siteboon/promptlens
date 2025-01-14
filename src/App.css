@@ -1,0 +1,111 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Smooth scrolling for the container */
+.overflow-x-auto {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(87, 13, 248, 0.3) transparent;
+}
+
+/* Webkit scrollbar styling */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(87, 13, 248, 0.3);
+  border-radius: 3px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(87, 13, 248, 0.5);
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: all 300ms ease-in-out;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #570DF8aa);
+  transform: scale(1.05);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 1em;
+  border-radius: 1rem;
+  background: rgba(87, 13, 248, 0.05);
+  transition: all 300ms ease-in-out;
+}
+
+.card:hover {
+  background: rgba(87, 13, 248, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Custom gradients and effects */
+.gradient-text {
+  background: linear-gradient(135deg, #570DF8, #793EF9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(to right, #570DF8, #793EF9);
+  padding: 1px;
+  border-radius: 0.5rem;
+}
+
+.gradient-border > * {
+  background: hsl(var(--b1));
+  border-radius: inherit;
+}
+
+/* Glass effect */
+.glass-panel {
+  background: rgba(87, 13, 248, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(87, 13, 248, 0.1);
+}
+
+/* Snap scrolling improvements */
+.snap-x {
+  -ms-scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.read-the-docs {
+  color: #888;
+}

@@ -1,0 +1,42 @@
+/**
+ * Migration: Add New Model Example
+ * Version: 3
+ * Description: Example of how to add a new model to the database
+ * 
+ * To use this example:
+ * 1. Copy this file
+ * 2. Rename it to follow the migration naming pattern (e.g., 003_add_new_model.ts)
+ * 3. Modify the model configuration as needed
+ * 4. Update the version number if necessary
+ */
+
+import { ModelConfig, generateModelInsertSQL } from '../config/models';
+
+export const version = 3;
+
+// Define your new model
+const newModel: ModelConfig = {
+  id: 'gpt-5',  // Example model
+  name: 'GPT-5',
+  provider: 'openai',
+  multilingual: true,
+  vision: true,
+  message_batches: true,
+  context_window: 128000,
+  max_output_tokens: 4096,
+  input_cost_per_1m: 20000000,
+  output_cost_per_1m: 80000000,
+  latency: 'Fast'
+};
+
+// Generate the migration SQL
+export const up = generateModelInsertSQL(newModel);
+export const down = `DELETE FROM models WHERE id = '${newModel.id}';`;
+
+/**
+ * Notes:
+ * - Always include both up and down migrations
+ * - Use meaningful model IDs that match the provider's naming
+ * - Keep costs in the same unit (per 1M tokens)
+ * - Test both up and down migrations before committing
+ */ 

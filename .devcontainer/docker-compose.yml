@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  app:
+    build: 
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/app:cached
+      - node_modules:/app/node_modules
+      - server_node_modules:/app/server/node_modules
+      - src_node_modules:/app/src/node_modules
+      - ../data:/app/data
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - OPENAI_KEY=${OPENAI_KEY}
+      - ANTHROPIC_KEY=${ANTHROPIC_KEY}
+    command: sleep infinity
+
+volumes:
+  node_modules:
+  server_node_modules:
+  src_node_modules: 
