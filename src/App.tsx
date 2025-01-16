@@ -13,9 +13,6 @@ import {
   Comparison,
   ComparisonResponse,
 } from "./services/api";
-import ReactMarkdown from "react-markdown";
-import ModelSelector from "./components/ModelSelector";
-import ModelBadge from "./components/ModelBadge";
 import Logo from "./components/Logo";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import "./App.css";
@@ -72,6 +69,7 @@ function App() {
   const [continueAllPrompt, setContinueAllPrompt] = useState("");
   const [showLeftGradient, setShowLeftGradient] = useState(false);
   const [showRightGradient, setShowRightGradient] = useState(false);
+  const isLoadingFromHistory = useRef(false);
 
   useEffect(() => {
     // Initialize theme-change
@@ -358,23 +356,40 @@ function App() {
   }, []);
 
   const handleLoadComparison = (comparison: Comparison) => {
+    isLoadingFromHistory.current = true;
     const responses =
       typeof comparison.responses === "string"
         ? (JSON.parse(comparison.responses) as ComparisonResponse[])
         : comparison.responses;
 
-    setConfigs(
-      responses.map((response) => ({
-        id: Date.now().toString(),
-        userPrompt: comparison.user_prompt,
-        systemPrompt: comparison.system_prompt,
-        modelId: response.modelId,
-        temperature: 0.7,
-      }))
-    );
-    setShowHistory(false);
-    setHideConfigs(false);
+    // Generate new configs with unique IDs
+    const newConfigs = responses.map((response) => ({
+      id: `history-${Date.now()}-${Math.random()}`,
+      userPrompt: comparison.user_prompt,
+      systemPrompt: comparison.system_prompt,
+      modelId: response.modelId,
+      temperature: 0.7,
+    }));
+
+    // Create new results
+    const newResults = responses.map((response, index) => ({
+      config: newConfigs[index],
+      response: response.response,
+      tokensUsed: response.tokensUsed,
+      cost: response.cost,
+      responseTime: response.responseTime,
+    }));
+
+    // Update all state synchronously
+    setHideConfigs(true);
+    setChatHistories([]);
     setResults([]);
+    setConfigs([]);  // Clear configs first
+    setConfigs(newConfigs);  // Then set new configs
+    setResults(newResults);
+    setShowHistory(false);
+    
+    isLoadingFromHistory.current = false;
   };
 
   // Save configs to localStorage
@@ -387,6 +402,7 @@ function App() {
   // Clear results when configs change
   useEffect(() => {
     if (
+      !isLoadingFromHistory.current &&
       results.length > 0 &&
       !results.every((r) => configs.some((c) => c.id === r.config.id))
     ) {
@@ -972,7 +988,7 @@ function App() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="w-[450px] flex-shrink-0"
+              className="w-[250px] flex-shrink-0"
             >
               <div
                 className="card glass-panel border-2 border-dashed border-base-300 cursor-pointer hover:bg-base-200 transition-colors h-[180px]"
@@ -1031,21 +1047,33 @@ function App() {
               </motion.div>
             ) : (
               <div className="flex justify-center space-x-4">
-                {results.length > 0 && (
+                {results.length > 0 ? (
+                  <>
+                    <button
+                      onClick={() => setShowContinueAll(true)}
+                      className="btn btn-primary"
+                    >
+                      Continue All
+                    </button>
+                    <button
+                      onClick={() => {
+                        setResults([]);
+                        setHideConfigs(false);
+                      }}
+                      className="btn btn-ghost"
+                    >
+                      Restart
+                    </button>
+                  </>
+                ) : (
                   <button
-                    onClick={() => setShowContinueAll(true)}
-                    className="btn btn-ghost"
+                    onClick={handleCompare}
+                    disabled={!configs.every((c) => c.modelId && c.userPrompt)}
+                    className="btn btn-primary"
                   >
-                    Continue All
+                    Compare
                   </button>
                 )}
-                <button
-                  onClick={handleCompare}
-                  disabled={!configs.every((c) => c.modelId && c.userPrompt)}
-                  className="btn btn-primary"
-                >
-                  Compare
-                </button>
               </div>
             )}
           </motion.div>

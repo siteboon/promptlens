@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/lens.svg" alt="PromptLens Logo" width="100" height="100"/>
+</p>
+
 # PromptLens
 
 An open-source tool for comparing and analyzing LLM responses across different models.
@@ -31,7 +35,6 @@ An open-source tool for comparing and analyzing LLM responses across different m
 The easiest way to get started is using Docker:
 
 ```yaml
-version: '3.8'
 services:
   app:
     image: siteboonai/promptlens:latest

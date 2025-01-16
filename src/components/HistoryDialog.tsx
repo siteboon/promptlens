@@ -38,15 +38,15 @@ const HistoryDialog: React.FC<HistoryDialogProps> = ({
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.95 }}
-            className="bg-base-100 rounded-lg shadow-xl w-full max-w-4xl max-h-[80vh] overflow-hidden"
+            className="bg-base-100 rounded-lg shadow-xl w-full max-w-4xl max-h-[80vh] overflow-hidden flex flex-col"
             onClick={e => e.stopPropagation()}
           >
-            <div className="p-4 border-b border-base-300 flex justify-between items-center">
+            <div className="p-4 border-b border-base-300 flex justify-between items-center flex-shrink-0">
               <h2 className="text-xl font-bold">Comparison History</h2>
               <button className="btn btn-ghost btn-sm btn-circle" onClick={onClose}>✕</button>
             </div>
 
-            <div className="overflow-y-auto p-4 space-y-4">
+            <div className="overflow-y-auto p-4 space-y-4 flex-1">
               {comparisons.length === 0 ? (
                 <div className="text-center text-gray-500 py-8">
                   No comparison history yet

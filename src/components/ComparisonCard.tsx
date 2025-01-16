@@ -75,7 +75,7 @@ export const ComparisonCard: React.FC<ComparisonCardProps> = ({
   }, [forceHideConfig]);
 
   return (
-    <div className="card glass-panel [data-theme='dark']:bg-neutral w-[450px] flex-shrink-0">
+    <div className="card glass-panel [data-theme='dark']:bg-neutral min-w-[450px] w-[800px] flex-shrink flex-grow-0">
       <div className="card-body p-1">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
