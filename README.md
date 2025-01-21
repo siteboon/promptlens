@@ -1,8 +1,7 @@
 <p align="center">
-  <img src="public/lens.svg" alt="PromptLens Logo" width="200" height="100"/>
+  <img src="public/lens.svg" alt="PromptLens Logo" width="300" height="200"/>
 </p>
 
-# PromptLens
 
 PromptLens is an open-source tool for comparing and analyzing LLM responses across different models using different models or different prompts
 
