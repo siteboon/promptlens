@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/lens.svg" alt="PromptLens Logo" width="400" height="300"/>
+  <img src="public/lens.svg" alt="PromptLens Logo" width="400" height="250"/>
 </p>
 
 
