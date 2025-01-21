@@ -1,10 +1,10 @@
 {
   "name": "promptlens",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "cd server && npm run dev",
+    "dev:server": "cd server && NODE_ENV=development PORT=$PORT npm run dev",
     "dev:client": "vite",
     "install:all": "npm install && cd server && npm install",
     "build": "tsc && vite build && cd server && npm run build",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/animejs": "^3.1.7",
+    "@types/dotenv": "^8.2.3",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -36,6 +37,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.2",
+    "dotenv": "^16.4.7",
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",

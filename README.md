@@ -1,5 +1,8 @@
 <p align="center">
   <img src="public/lens.svg" alt="PromptLens Logo" width="100" height="100"/>
+  <h1 align="center" style="background: linear-gradient(135deg, #ef9fbc, #65c3c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+    PromptLens
+  </h1>
 </p>
 
 # PromptLens

@@ -9,11 +9,11 @@ export default defineConfig({
     strictPort: true,
     hmr: {
       overlay: true,
-      clientPort: 3000
+      clientPort: parseInt(process.env.VITE_PORT || '3000')
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: `http://localhost:${process.env.PORT || '3001'}`,
         changeOrigin: true,
         configure: (proxy, options) => {
           // Add retry logic for initial connection

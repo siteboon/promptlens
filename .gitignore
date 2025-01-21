@@ -65,6 +65,7 @@ docker-compose.override.yml
 .cache/
 .npm/
 .eslintcache
+nohup.out
 
 # yarn v2
 .yarn/cache
