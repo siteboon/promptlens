@@ -4,7 +4,8 @@
 
 # PromptLens
 
-An open-source tool for comparing and analyzing LLM responses across different models.
+PromptLens is an open-source tool for comparing and analyzing LLM responses across different models using different models or different prompts
+
 
 ## Features
 
@@ -15,7 +16,7 @@ An open-source tool for comparing and analyzing LLM responses across different m
   - Multi-turn conversations support
 
 - **LLM Integration**
-  - Support for OpenAI GPT models and Anthropic Claude
+  - Support for **OpenAI GPT & o1** models and **Anthropic Claude**
   - Streaming responses for real-time feedback
   - Cost calculation and usage tracking
   - API key management in settings
